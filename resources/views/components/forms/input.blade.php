@@ -1,5 +1,3 @@
-@props(['label', 'name'])
-
 @php
     $defaults = [
         'type' => 'text',
@@ -11,5 +9,5 @@
 @endphp
 
 <x-forms.field :$label :$name>
-    <input {{ $attribute->merge($defaults) }}>
+    <input {{ $attributes->merge($defaults) }}>
 </x-forms.field>
