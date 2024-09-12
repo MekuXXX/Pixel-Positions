@@ -13,11 +13,13 @@ Route::controller(JobController::class)->group(function () {
 Route::controller(RegisterUserController::class)->group(function () {
   Route::get('/register', 'create');
   Route::post('/register', 'store');
-});
+})->middleware('guest');
 
 Route::controller(UserSessionController::class)->group(function () {
-  Route::get('/login', 'create');
-  Route::post('/login', 'store');
+  Route::middleware('guest')->group(function () {
+    Route::get('/login', 'index');
+    Route::post('/login', 'store');
+  });
 
-  Route::delete('/logout', 'destroy');
+  Route::post('/logout', 'destroy');
 });

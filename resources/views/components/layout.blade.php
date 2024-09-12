@@ -54,9 +54,21 @@
                 <a href="#">Companies</a>
             </div>
 
-            <div>
-                <a href="#">Post a Job</a>
-            </div>
+            @auth
+                <div class="flex items-center gap-2">
+                    <a href="/jobs/create">Post a Job</a>
+                    <x-forms.form method="POST" action="/logout">
+                        <button>Logout</button>
+                    </x-forms.form>
+                </div>
+            @endauth
+
+            @guest
+                <div class="flex items-center gap-2">
+                    <a href="/login">Sign In</a>
+                    <a href="/register">Sign Up</a>
+                </div>
+            @endguest
         </nav>
 
 

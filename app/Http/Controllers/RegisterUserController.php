@@ -34,7 +34,7 @@ class RegisterUserController extends Controller
         $validatedUser = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'confirmed', Password::min(6)]
+            'password' => ['required', 'password', 'confirmed', Password::min(6)]
         ]);
 
         $validatedEmployer = $request->validate([
