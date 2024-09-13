@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Employer::class);
             $table->string('title');
-            $table->string('url');
+            $table->string('url', 1025);
             $table->double('salary');
             $table->boolean('featured');
             $table->enum('location', ['On-Site', 'Hybrid', 'Remote']);

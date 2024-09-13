@@ -2,10 +2,9 @@
     <x-section class="text-center space-y-4">
         <h1 class="capitalize text-4xl font-bold">Let's find your next job</h1>
 
-        <form action="">
-            <input type="text" placeholder="Web Developer..."
-                class="rounded-xl bg-white/10 border-white/15 transition duration-200 w-full py-4 px-5 max-w-xl" />
-        </form>
+        <x-forms.form action="/search">
+            <x-forms.input placeholder="Web Developer..." name="q" :label="false" />
+        </x-forms.form>
     </x-section>
 
     <x-section>

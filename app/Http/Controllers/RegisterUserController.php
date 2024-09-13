@@ -34,7 +34,7 @@ class RegisterUserController extends Controller
         $validatedUser = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'password', 'confirmed', Password::min(6)]
+            'password' => ['required', 'confirmed', Password::min(6)]
         ]);
 
         $validatedEmployer = $request->validate([
@@ -43,7 +43,6 @@ class RegisterUserController extends Controller
         ]);
 
         $user = User::create($validatedUser);
-
         $logoPath = $request->logo->store('logos');
 
         $user->employer()->create([

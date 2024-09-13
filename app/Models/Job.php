@@ -11,6 +11,8 @@ class Job extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function employer(): BelongsTo
     {
         return $this->belongsTo(Employer::class);
@@ -19,5 +21,12 @@ class Job extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function tag(string $name)
+    {
+        $tag = Tag::firstOrCreate(['name' => $name]);
+
+        $this->tags()->attach($tag);
     }
 }
