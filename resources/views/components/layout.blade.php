@@ -33,6 +33,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pixel Positions</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,57 +41,52 @@
 
 </head>
 
-<body class="bg-black text-white font-hanken-grotesk">
-    <div class="px-10 flex flex-col min-h-screen">
-        <nav class="flex justify-between items-center py-4 border-b border-white/10">
+<body class="bg-black text-white font-hanken-grotesk flex flex-col min-h-screen">
+    <nav class="bg-white/10 shadow-md py-4 px-10">
+        <div class="container mx-auto flex justify-between items-center">
             <div>
-                <a href="/"><img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="Logo" /></a>
+                <a href="/">
+                    <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="Logo" class="h-8">
+                </a>
             </div>
 
-            <div class="space-x-6 font-bold">
-                <a href="#">Jobs</a>
-                <a href="#">Careers</a>
-                <a href="#">Salaries</a>
-                <a href="#">Companies</a>
-            </div>
-
-            @auth
-                <div class="flex items-center gap-2">
-                    <a href="/jobs/create">Post a Job</a>
+            <div class="flex items-center gap-4">
+                @auth
+                    <x-button href="/jobs/create"
+                        class="font-bold bg-blue-500 hover:bg-blue-700 py-3 px-2 rounded-xl hover:text-white">
+                        Post a Job
+                    </x-button>
                     <x-forms.form method="POST" action="/logout">
-                        <button>Logout</button>
+                        <button class="font-bold">Logout</button>
                     </x-forms.form>
-                </div>
-            @endauth
+                @endauth
 
-            @guest
-                <div class="flex items-center gap-2">
-                    <a href="/login">Sign In</a>
-                    <a href="/register">Sign Up</a>
-                </div>
-            @endguest
-        </nav>
-
-
-        <main class="mt-10 max-w-[986px] mx-auto flex-1">
-            {{ $slot }}
-        </main>
-
-        <footer class="text-sm border-t border-white/10 pt-4 pb-2 flex justify-between items-center">
-            <p>Copyright &copy;{{ date('Y') }} Maded By <span class="font-bold italic text-gray-300">Mayushi</span>
-            </p>
-            <div class="flex gap-2">
-                @foreach ($links as $link)
-                    <div>
-                        <a href="{{ $link['url'] }}">
-                            <img src="{{ Vite::asset($link['src']) }}" alt="{{ $link['name'] }}"
-                                class="object-cover w-5 h-5">
-                        </a>
-                    </div>
-                @endforeach
+                @guest
+                    <x-button href="/login" class="font-bold">Sign In</x-button>
+                    <x-button href="/register" class="font-bold">Sign Up</x-button>
+                @endguest
             </div>
-        </footer>
-    </div>
+        </div>
+    </nav>
+
+    <main class="mt-10 max-w-[1186px] mx-auto flex-1 px-10">
+        {{ $slot }}
+    </main>
+
+    <footer class="text-sm border-t border-white/10 pt-4 pb-2 flex justify-between items-center px-10 mt-4">
+        <p>Copyright &copy;{{ date('Y') }} Maded By <span class="font-bold italic text-gray-300">Mayushi</span>
+        </p>
+        <div class="flex gap-2">
+            @foreach ($links as $link)
+                <div>
+                    <a href="{{ $link['url'] }}">
+                        <img src="{{ Vite::asset($link['src']) }}" alt="{{ $link['name'] }}"
+                            class="object-cover w-5 h-5">
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </footer>
 </body>
 
 </html>

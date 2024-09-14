@@ -9,7 +9,7 @@
 
     <x-section>
         <x-section-heading>Top Jobs</x-section-heading>
-        <div class="grid lg:grid-cols-3 gap-y-4 gap-x-3 mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto">
             @foreach ($featuredJobs as $job)
                 <x-job-card :$job />
             @endforeach
